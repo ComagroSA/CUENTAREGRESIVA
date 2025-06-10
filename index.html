@@ -23,10 +23,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* object-fit: cover; asegura que el video cubra todo el espacio. */
-      /* Sin embargo, si el aspecto del video y de la pantalla no coinciden (ej. video ancho en pantalla vertical), */
-      /* el video se cortará en los bordes para mantener la cobertura total. */
-      object-fit: cover;
+      /* CAMBIO AQUÍ: object-fit: contain; */
+      /* Esto asegura que el video se vea completo, ajustándose dentro del espacio. */
+      /* Si las proporciones no coinciden, aparecerán barras negras (letterboxing/pillarboxing). */
+      object-fit: contain;
     }
 
     .countdown {
@@ -55,7 +55,6 @@
     }
 
     /* Media query adicional para controlar el tamaño de fuente en orientación vertical de móviles */
-    /* Puedes ajustar los valores de min-aspect-ratio y font-size según tu video y cómo quieres que se vea */
     @media (orientation: portrait) and (max-width: 600px) {
       .countdown {
         font-size: 14vw; /* Un poco más grande para llenar el espacio en orientación vertical, si es necesario */
