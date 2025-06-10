@@ -23,6 +23,9 @@
       left: 0;
       width: 100%;
       height: 100%;
+      /* object-fit: cover; asegura que el video cubra todo el espacio. */
+      /* Sin embargo, si el aspecto del video y de la pantalla no coinciden (ej. video ancho en pantalla vertical), */
+      /* el video se cortará en los bordes para mantener la cobertura total. */
       object-fit: cover;
     }
 
@@ -32,9 +35,31 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: red;
-      font-size: 12vw;
-        z-index: 10;
+      font-size: 12vw; /* Tamaño por defecto para pantallas grandes */
+      z-index: 10;
       text-align: center;
+    }
+
+    /* Media query para pantallas con un ancho máximo de 768px (típico para tablets en vertical o móviles grandes) */
+    @media (max-width: 768px) {
+      .countdown {
+        font-size: 10vw; /* Reduce el tamaño de la fuente para que se adapte mejor */
+      }
+    }
+
+    /* Media query para pantallas con un ancho máximo de 480px (típico para la mayoría de los smartphones) */
+    @media (max-width: 480px) {
+      .countdown {
+        font-size: 12vw; /* Puedes ajustarlo a tu gusto, o incluso más pequeño si sigue siendo muy grande */
+      }
+    }
+
+    /* Media query adicional para controlar el tamaño de fuente en orientación vertical de móviles */
+    /* Puedes ajustar los valores de min-aspect-ratio y font-size según tu video y cómo quieres que se vea */
+    @media (orientation: portrait) and (max-width: 600px) {
+      .countdown {
+        font-size: 14vw; /* Un poco más grande para llenar el espacio en orientación vertical, si es necesario */
+      }
     }
   </style>
 </head>
