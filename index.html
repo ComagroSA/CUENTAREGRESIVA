@@ -23,25 +23,20 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* Por defecto (escritorio y pantallas grandes): el video cubrirá todo, recortando si es necesario */
       object-fit: cover;
     }
 
-    /* Media query para pantallas más pequeñas (ej. hasta 768px), o específicas para móviles en vertical */
     @media (max-width: 768px) {
       video {
-        /* En móviles, el video se ajustará proporcionalmente sin recortarse, lo que puede generar barras negras */
         object-fit: contain;
       }
     }
 
-    /* Puedes ajustar esta media query para ser más específica para la orientación vertical en móviles */
     @media (orientation: portrait) and (max-width: 600px) {
       video {
         object-fit: contain;
       }
     }
-
 
     .countdown {
       position: absolute;
@@ -49,29 +44,26 @@
       left: 50%;
       transform: translate(-50%, -50%);
       color: red;
-      font-size: 12vw; /* Tamaño por defecto para pantallas grandes */
+      font-size: 12vw;
       z-index: 10;
       text-align: center;
     }
 
-    /* Media query para pantallas con un ancho máximo de 768px (típico para tablets en vertical o móviles grandes) */
     @media (max-width: 768px) {
       .countdown {
-        font-size: 10vw; /* Reduce el tamaño de la fuente para que se adapte mejor */
+        font-size: 10vw;
       }
     }
 
-    /* Media query para pantallas con un ancho máximo de 480px (típico para la mayoría de los smartphones) */
     @media (max-width: 480px) {
       .countdown {
-        font-size: 12vw; /* Puedes ajustarlo a tu gusto, o incluso más pequeño si sigue siendo muy grande */
+        font-size: 12vw;
       }
     }
 
-    /* Media query adicional para controlar el tamaño de fuente en orientación vertical de móviles */
     @media (orientation: portrait) and (max-width: 600px) {
       .countdown {
-        font-size: 14vw; /* Un poco más grande para llenar el espacio en orientación vertical, si es necesario */
+        font-size: 14vw;
       }
     }
   </style>
@@ -79,37 +71,16 @@
 <body>
 
   <video autoplay muted loop playsinline>
-  <source src="index_video.mp4?v=2" type="video/mp4" />
-  Tu navegador no soporta el video.
-</video>
+    <source src="index_video.mp4?v=2" type="video/mp4" />
+    Tu navegador no soporta el video.
+  </video>
 
   <div class="countdown" id="countdown">
     Cargando...
   </div>
 
   <script>
-    function updateCountdown() {
-      const now = new Date();
-      const target = new Date();
-
-      target.setHours(21, 45, 0, 0); // 21:45:00 hoy
-
-      // Si ya pasó la hora, mostrar "00:00:00"
-      if (now > target) {
-        document.getElementById("countdown").textContent = "00:00:00";
-        return;
-      }
-
-      const diff = target - now;
-      const hours = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, '0');
-      const minutes = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-      const seconds = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-
-      document.getElementById("countdown").textContent = `${hours}:${minutes}:${seconds}`;
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    document.getElementById("countdown").textContent = "00:00:00";
   </script>
 
 </body>
